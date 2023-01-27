@@ -1,7 +1,15 @@
 const express = require("express");
-const { userRegistration } = require("../controllers/user.contoller");
+const {
+  userRegistration,
+  getAlluser,
+  getUser,
+  userDelete,
+  userUpdate,
+} = require("../controllers/user.contoller");
 const router = express.Router();
 
-router.get("/register", userRegistration);
+router.post("/register", userRegistration);
+router.get("/alluser", getAlluser);
+router.route("/:id").get(getUser).delete(userDelete).put(userUpdate);
 
 module.exports = router;

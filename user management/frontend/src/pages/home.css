@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+}
+.home-container {
+  width: 70%;
+  margin: 0 auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr,
+th,
+td {
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+th:first-child {
+  width: 30px;
+}
+
+tr:nth-child(even) {
+  background-color: gray;
+}
+
+.view-icon {
+  margin: 0px 10px;
+  font-size: 20px;
+  color: rgb(141, 50, 50);
+}
+.view-icon:hover {
+  cursor: pointer;
+}
+.edit-icon {
+  margin: 0px 10px;
+  font-size: 20px;
+  color: rgb(65, 173, 32);
+}
+.edit-icon:hover {
+  cursor: pointer;
+}
+.delete-icon {
+  margin: 0px 10px;
+  font-size: 20px;
+  color: rgb(223, 57, 7);
+}
+.delete-icon:hover {
+  cursor: pointer;
+}
