@@ -7,12 +7,13 @@
   background-color: gray;
 }
 form {
-  padding: 20px;
+  padding: 50px;
 }
 
 .input-controller {
   display: flex;
   flex-direction: column;
+  margin: 20px 0px;
 }
 .input-controller input {
   width: 100%;
@@ -28,4 +29,10 @@ form {
   background-color: black;
   color: white;
   margin-top: 10px;
+  border-radius: 4px;
+}
+.register-btn:hover {
+  cursor: pointer;
+  background-color: rgb(41, 34, 34);
+  color: rgb(150, 135, 135);
 }

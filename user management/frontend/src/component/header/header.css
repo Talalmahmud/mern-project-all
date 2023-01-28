@@ -1,8 +1,12 @@
 .header {
   width: 100%;
   padding: 20px;
+  background-color: bisque;
+  margin-bottom: 50px;
 }
-
+a {
+  text-decoration: none;
+}
 .header h2 {
   text-align: center;
 }

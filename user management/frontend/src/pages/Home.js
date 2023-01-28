@@ -26,7 +26,9 @@ const Home = () => {
     <>
       <div className="container">
         <div className="home-container">
-          <NavLink to="/register">Add User</NavLink>
+          <NavLink to="/register">
+            <h3>Add User</h3>
+          </NavLink>
           <div className="show-user">
             <table>
               <tbody>
@@ -35,7 +37,7 @@ const Home = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
-                  <th></th>
+                  <th>Actions</th>
                 </tr>
                 {users &&
                   users.map((user, index) => {

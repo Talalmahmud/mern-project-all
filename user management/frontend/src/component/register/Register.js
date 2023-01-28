@@ -17,6 +17,7 @@ const Register = () => {
     const value = e.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
+
   const handleonSubmit = async (e) => {
     e.preventDefault();
     await axios
@@ -25,7 +26,7 @@ const Register = () => {
         console.log("User registered");
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("User alredy register or empty form"));
   };
   return (
     <>
@@ -39,6 +40,7 @@ const Register = () => {
                 name="name"
                 value={inputs.name}
                 onChange={handlonChange}
+                placeholder="Enter your name"
               />
             </div>
             <div className="input-controller">
@@ -48,6 +50,7 @@ const Register = () => {
                 name="email"
                 value={inputs.email}
                 onChange={handlonChange}
+                placeholder="Enter your email"
               />
             </div>
             <div className="input-controller">
@@ -57,6 +60,7 @@ const Register = () => {
                 name="phone"
                 value={inputs.phone}
                 onChange={handlonChange}
+                placeholder="Enter phone number"
               />
             </div>
             <div className="input-controller">
