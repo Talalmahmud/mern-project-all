@@ -29,6 +29,10 @@ const newOrder = async (req, res, next) => {
 
 const getAllOrders = async (req, res, next) => {
   const orders = await Orders.find();
+  let totalAmount = 0;
+  orders.forEach((order) => {
+    totalAmount += order.totalPrice;
+  });
 
   if (!orders) {
     throw new ErrorHandler("Order not found");
@@ -37,6 +41,7 @@ const getAllOrders = async (req, res, next) => {
   res.status(200).json({
     success: true,
     orders,
+    totalAmount,
   });
 };
 
@@ -69,4 +74,49 @@ const getLoggedUserOrder = async (req, res, next) => {
   });
 };
 
-module.exports = { newOrder, getSingleOrder, getLoggedUserOrder, getAllOrders };
+const updateOrder = async (req, res, next) => {
+  const order = await Orders.find(req.user.id);
+
+  if (order.orderStatus === "Delivered") {
+    throw new ErrorHandler("You have already delivered this order", 400);
+  }
+  order.orderItems.forEach(async (order) => {
+    await updateStock(order.product, order.quantity);
+  });
+
+  order.orderStatus = req.body.status;
+  if (req.body.status === "Delivered") {
+    order.deliverAt = Date.now();
+  }
+
+  res.status(200).json({
+    success: true,
+  });
+};
+
+async function updateStock(id, quantity) {
+  const product = await Products.findById(id);
+  product.stock = product.stock - quantity;
+  await product.save();
+}
+
+const deleteOrder = async (req, res, next) => {
+  const order = await Orders.findByIdAndDelete(req.params.id);
+
+  if (!order) {
+    throw new ErrorHandler("Order not found");
+  }
+
+  res.status(200).json({
+    success: true,
+    msg: "Order remove sucessfully",
+  });
+};
+module.exports = {
+  newOrder,
+  getSingleOrder,
+  getLoggedUserOrder,
+  getAllOrders,
+  updateOrder,
+  deleteOrder,
+};
