@@ -11,10 +11,8 @@ const {
 } = require("../controllers/product.controller");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const router = expres.Router();
-
-router
-  .route("/products")
-  .get(isAuthenticatedUser, authorizeRoles("admin"), getAllProducts);
+//isAuthenticatedUser, authorizeRoles("admin"),
+router.route("/products").get(getAllProducts);
 router
   .route("/products/new")
   .post(isAuthenticatedUser, authorizeRoles("admin"), createProduct);
